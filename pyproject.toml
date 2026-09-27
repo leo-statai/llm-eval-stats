@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-eval-stats"
+version = "0.1.0"
+description = "Statistically sound LLM evaluation: confidence intervals, paired model comparisons, LLM-judge agreement and sample-size planning."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Leonardo Alves", email = "leonardo.statai@gmail.com" }]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.15"]
+keywords = ["llm", "evaluation", "statistics", "bootstrap", "llm-as-judge", "benchmarking"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llm_eval_stats"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "NPY"]
+
+[tool.ruff.format]
+exclude = ["*.md"]
